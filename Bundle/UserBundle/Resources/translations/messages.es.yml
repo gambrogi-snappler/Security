@@ -1,0 +1,8 @@
+# User Form
+Username: Nombre de usuario
+First: Password
+Second: Repita el password
+Enabled: Habilitado
+
+# Security
+"Bad credentials": Nombre de usuario y/o password incorrectos

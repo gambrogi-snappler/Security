@@ -1,0 +1,34 @@
+########### Seguridad
+
+SnappmindsSecurityBundle_security_login:
+    pattern:  /login
+    defaults: { _controller: SnappmindsSecurityUserBundle:Security:login }
+
+SnappmindsSecurityBundle_security_logincheck:
+    pattern:  /login_check
+
+SnappmindsSecurityBundle_security_logout:
+    pattern:  /logout
+    
+########### Proveedores
+
+SnappmindsSecurityBundle_users_index:
+    pattern:  /users
+    defaults: { _controller: SnappmindsSecurityUserBundle:User:browse }
+
+SnappmindsSecurityBundle_users_index_data:
+    pattern:  /users/data
+    defaults: { _controller: SnappmindsSecurityUserBundle:User:browseData }
+    
+SnappmindsSecurityBundle_users_insert:
+    pattern:  /users/insert
+    defaults: { _controller: SnappmindsSecurityUserBundle:User:insert }
+
+SnappmindsSecurityBundle_users_update:
+    pattern:  /users/update/{id}
+    defaults: { _controller: SnappmindsSecurityUserBundle:User:update }    
+    
+SnappmindsSecurityBundle_users_delete:
+    pattern:  /users/delete/{id}
+    defaults: { _controller: SnappmindsSecurityUserBundle:User:delete }        
+    
