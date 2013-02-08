@@ -16,6 +16,11 @@ class UserType extends AbstractType {
 
     public function buildForm(FormBuilder $builder, array $options) {
         $builder
+            ->add('firstname')
+            ->add('lastname')
+            ->add('personalID')
+            ->add('phoneNumber')
+            ->add('notes')
             ->add('username')
             ->add('email', 'email')
             ->add('plainPassword', 'repeated', array('type' => 'password'))
@@ -24,8 +29,7 @@ class UserType extends AbstractType {
                     'choices'=> $options['roles'], 
                     'multiple'  => true,
                     'expanded'=> false
-            ))
-        ;
+            ));
     }
 
     public function getName() {

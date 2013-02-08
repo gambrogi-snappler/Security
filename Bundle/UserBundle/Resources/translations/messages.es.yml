@@ -1,4 +1,9 @@
 # User Form
+Firstname: Nombre
+Lastname: Apellido
+Phonenumber: Número de Teléfono
+Personalid: DNI
+Notes: Notas
 Username: Nombre de usuario
 First: Password
 Second: Repita el password

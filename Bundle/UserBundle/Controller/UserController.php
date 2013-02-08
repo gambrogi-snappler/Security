@@ -6,9 +6,6 @@ use Snappminds\Utils\Bundle\ABMBundle\Controller\ABMController as Controller;
 
 use Snappminds\Security\Bundle\UserBundle\Widget\Grid\UserGrid;
 use Snappminds\Security\Bundle\UserBundle\DataSource\UserDataSource;
-use Snappminds\Security\Bundle\UserBundle\Form\UserType;
-
-use Snappminds\Security\Bundle\UserBundle\Entity\User;
 
 class UserController extends Controller
 {
@@ -60,7 +57,7 @@ class UserController extends Controller
     }    
     
     protected function getRepositoryName() {
-        return 'Snappminds\Security\Bundle\UserBundle\Entity\User';
+        return $this->container->getParameter('snappminds_security_user.user_class');
     }    
     
     protected function getGridInstance()
@@ -75,12 +72,14 @@ class UserController extends Controller
 
     protected function getEntityInstance()
     {
-        return new User();
+        $entityClassName = $this->container->getParameter('snappminds_security_user.user_class');
+        return new $entityClassName();
     }    
     
     protected function getForm()
     {
-        return new UserType();
+        $entityTypeClassName = $this->container->getParameter('snappminds_security_user.user_type_class');
+        return new $entityTypeClassName();        
     } 
     
     public function createForm($type, $data = null, array $options = array())

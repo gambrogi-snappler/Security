@@ -24,7 +24,7 @@ class SnappmindsSecurityUserExtension extends Extension
         
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
-        
+                
         $container->setParameter('snappminds_security_user.roles', $config['roles']);
         $container->setParameter('snappminds_security_user.templates.form', $config['templates']['form']);
         $container->setParameter('snappminds_security_user.templates.insert', $config['templates']['insert']);
@@ -32,6 +32,8 @@ class SnappmindsSecurityUserExtension extends Extension
         $container->setParameter('snappminds_security_user.templates.browse', $config['templates']['browse']);
         $container->setParameter('snappminds_security_user.templates.parent', $config['templates']['parent']);
         $container->setParameter('snappminds_security_user.templates.grid_theme', $config['templates']['grid_theme']);
+        $container->setParameter('snappminds_security_user.user_class', $config['user_class']);
+        $container->setParameter('snappminds_security_user.user_type_class', $config['user_type_class']);
         
     }
 }

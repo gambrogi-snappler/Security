@@ -37,7 +37,11 @@ class Configuration implements ConfigurationInterface
                 ->useAttributeAsKey('name')
                 ->prototype('scalar')->end()                
                 ->defaultValue( array( 'ROLE_USER' => 'Usuario',  'ROLE_ADMIN' => 'Administrador' ) )->end()
-            ->end();
+            ->end() 
+            ->children()
+            ->scalarNode('user_class')->defaultValue('Snappminds\Security\Bundle\UserBundle\Entity\User')->cannotBeEmpty()->end()
+            ->scalarNode('user_type_class')->defaultValue('Snappminds\Security\Bundle\UserBundle\Form\UserType')->cannotBeEmpty()->end();
+        
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for
         // more information on that topic.
