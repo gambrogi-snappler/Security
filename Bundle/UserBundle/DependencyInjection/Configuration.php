@@ -25,7 +25,7 @@ class Configuration implements ConfigurationInterface
             ->arrayNode('templates')
                 ->addDefaultsIfNotSet()
                 ->children()
-                    ->scalarNode('parent')->defaultValue('SnappmindsUtilsBluesBundle:Default:layout.html.twig')->cannotBeEmpty()->end()
+                    ->scalarNode('parent')->defaultValue('SnappmindsSecurityUserBundle:User:layout.html.twig')->cannotBeEmpty()->end()
                     ->scalarNode('browse')->defaultValue('SnappmindsSecurityUserBundle:User:browse.html.twig')->cannotBeEmpty()->end()
                     ->scalarNode('insert')->defaultValue('SnappmindsSecurityUserBundle:User:insert.html.twig')->cannotBeEmpty()->end()
                     ->scalarNode('update')->defaultValue('SnappmindsSecurityUserBundle:User:update.html.twig')->cannotBeEmpty()->end()
