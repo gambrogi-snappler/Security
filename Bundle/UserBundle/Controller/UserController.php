@@ -7,6 +7,8 @@ use Snappminds\Utils\Bundle\ABMBundle\Controller\ABMController as Controller;
 use Snappminds\Security\Bundle\UserBundle\Widget\Grid\UserGrid;
 use Snappminds\Security\Bundle\UserBundle\DataSource\UserDataSource;
 
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\FormError;
 class UserController extends Controller
 {
     protected function getSingularEntityName()
@@ -117,5 +119,29 @@ class UserController extends Controller
     {
         return $this->container->getParameter('snappminds_security_user.templates.form');
     }    
-    
+    public function processForm($form, Request $request, $entity)
+    {
+        $form->bindRequest($request);
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getEntityManager();
+            $uUsername= $em->getRepository($this->container->getParameter('snappminds_security_user.user_class'))->findByUsername($entity->getUsername());
+            $uMail= $em->getRepository($this->container->getParameter('snappminds_security_user.user_class'))->findByEmail($entity->getEmail());
+
+            if((($uUsername==array())&&($uMail==array())) || (($uUsername[0]->getId()==$entity->getId()) && ($uMail[0]->getId()==$entity->getId())) ) {
+                $em->persist($entity);
+                $em->flush();
+
+                return true;
+            }else{
+                if($uUsername!=array())
+                    $form->get('username')->addError(new FormError("Nombre de Usuario ya existe."));
+                else
+                    $form->get('email')->addError(new FormError("Email ya existe."));
+
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
 }
